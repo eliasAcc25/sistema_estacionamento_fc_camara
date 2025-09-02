@@ -1,0 +1,303 @@
+{
+  "info": {
+    "name": "Sistema Estacionamento FCamara - Testes Completos",
+    "description": "Coleção completa de testes para a API do Sistema de Estacionamento",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "ESTABELECIMENTOS",
+      "item": [
+        {
+          "name": "1. Criar Estabelecimento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Estacionamento FCamara\",\n  \"cnpj\": \"12.345.678/0001-90\",\n  \"endereco\": \"Rua das Flores, 123 - São Paulo/SP\",\n  \"telefone\": \"(11) 99999-9999\",\n  \"vagasMotos\": 50,\n  \"vagasCarros\": 100\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/estabelecimento",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "estabelecimento"]
+            }
+          }
+        },
+        {
+          "name": "2. Listar Todos Estabelecimentos",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/estabelecimentos",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "estabelecimentos"]
+            }
+          }
+        },
+        {
+          "name": "3. Buscar Estabelecimento por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/estabelecimento/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "estabelecimento", "1"]
+            }
+          }
+        },
+        {
+          "name": "4. Atualizar Estabelecimento",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Estacionamento FCamara - ATUALIZADO\",\n  \"cnpj\": \"12.345.678/0001-90\",\n  \"endereco\": \"Av. Paulista, 1000 - São Paulo/SP\",\n  \"telefone\": \"(11) 88888-8888\",\n  \"vagasMotos\": 60,\n  \"vagasCarros\": 120\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/estabelecimento/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "estabelecimento", "1"]
+            }
+          }
+        },
+        {
+          "name": "5. Deletar Estabelecimento",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/estabelecimento/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "estabelecimento", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "VEÍCULOS",
+      "item": [
+        {
+          "name": "1. Criar Veículo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Toyota\",\n  \"modelo\": \"Corolla\",\n  \"cor\": \"Prata\",\n  \"placa\": \"ABC-1234\",\n  \"tipo\": \"CARRO\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/veiculo",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "veiculo"]
+            }
+          }
+        },
+        {
+          "name": "2. Criar Segundo Veículo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Honda\",\n  \"modelo\": \"Civic\",\n  \"cor\": \"Azul\",\n  \"placa\": \"XYZ-5678\",\n  \"tipo\": \"CARRO\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/veiculo",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "veiculo"]
+            }
+          }
+        },
+        {
+          "name": "3. Criar Moto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Yamaha\",\n  \"modelo\": \"YBR 125\",\n  \"cor\": \"Vermelha\",\n  \"placa\": \"MOT-9999\",\n  \"tipo\": \"MOTO\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/veiculo",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "veiculo"]
+            }
+          }
+        },
+        {
+          "name": "4. Listar Todos Veículos",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/veiculos",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "veiculos"]
+            }
+          }
+        },
+        {
+          "name": "5. Buscar Veículo por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/veiculo/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "veiculo", "1"]
+            }
+          }
+        },
+        {
+          "name": "6. Atualizar Veículo",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marca\": \"Toyota\",\n  \"modelo\": \"Corolla XEI\",\n  \"cor\": \"Branco Perolizado\",\n  \"placa\": \"ABC-1234\",\n  \"tipo\": \"CARRO\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/veiculo/1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "veiculo", "1"]
+            }
+          }
+        },
+        {
+          "name": "7. Deletar Veículo",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/veiculo/3",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "veiculo", "3"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ENTRADA/SAÍDA",
+      "item": [
+        {
+          "name": "1. Registrar Entrada",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:8080/api/entrada?veiculoId=1&estabelecimentoId=1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "entrada"],
+              "query": [
+                {
+                  "key": "veiculoId",
+                  "value": "1"
+                },
+                {
+                  "key": "estabelecimentoId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "2. Registrar Segunda Entrada",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:8080/api/entrada?veiculoId=2&estabelecimentoId=1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "entrada"],
+              "query": [
+                {
+                  "key": "veiculoId",
+                  "value": "2"
+                },
+                {
+                  "key": "estabelecimentoId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "3. Consultar Veículos Presentes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/presentes",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "presentes"]
+            }
+          }
+        },
+        {
+          "name": "4. Registrar Saída",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:8080/api/saida?veiculoId=1",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "saida"],
+              "query": [
+                {
+                  "key": "veiculoId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
