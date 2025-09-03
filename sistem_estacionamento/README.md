@@ -2,17 +2,122 @@
 
 Sistema de gerenciamento de estacionamento para carros e motos desenvolvido para o teste técnico da FCamara.
 
+## 🏗️ Arquitetura da Solução
+
+```mermaid
+graph TB
+    Cliente[Cliente/Browser] -->|HTTPS| API[MS Estacionamento<br/>Spring Boot<br/>:8080]
+    API -->|REST API<br/>:8080| Swagger[Swagger UI]
+    API -->|JDBC<br/>:5432| DB[(PostgreSQL<br/>Database)]
+    
+    subgraph Docker["Docker/Podman Host"]
+        subgraph Network["Docker Network (bridge)"]
+            Container1[Container<br/>Spring Boot App<br/>:8080]
+            Container2[(Container<br/>PostgreSQL<br/>:5432)]
+        end
+        
+        Container1 -->|JDBC<br/>Container-to-Container| Container2
+        Container2 -.->|Data Persistence| Volumes[Volumes<br/>Data Persistence]
+        
+        ClientDocker[Cliente/Browser] -->|HTTP :8080| Container1
+    end
+    
+    DockerCompose[Docker Compose<br/>ou<br/>Podman Compose]
+    
+    style API fill:#d5e8d4,stroke:#82b366
+    style DB fill:#f8cecc,stroke:#b85450
+    style Swagger fill:#e1d5e7,stroke:#9673a6
+    style Cliente fill:#dae8fc,stroke:#6c8ebf
+    style Docker fill:#fff2cc,stroke:#d6b656
+    style Container1 fill:#d5e8d4,stroke:#82b366
+    style Container2 fill:#f8cecc,stroke:#b85450
+    style Network fill:#e1d5e7,stroke:#9673a6
+    style Volumes fill:#f8cecc,stroke:#b85450
+    style ClientDocker fill:#dae8fc,stroke:#6c8ebf
+```
+
+### 📋 Como funciona:
+- **Cliente/Browser** faz requisições HTTP para a API
+- **Spring Boot** processa as requisições através das camadas
+- **Controller** recebe e valida as requisições
+- **Repository** acessa o banco de dados H2/PostgreSQL
+- **Swagger UI** documenta automaticamente todos os endpoints
+
+## 📊 Documentação da API (Swagger)
+
+### 🌐 Para acessar o Swagger UI:
+1. Clone este repositório
+2. Execute a aplicação:
+   ```bash
+   mvn spring-boot:run
+   ```
+3. Acesse: `http://localhost:8080/swagger-ui.html`
+
+### 📋 Endpoints Principais:
+
+#### Estabelecimentos
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/estabelecimentos` | Lista todos estabelecimentos |
+| POST | `/api/estabelecimento` | Cria novo estabelecimento |
+| GET | `/api/estabelecimento/{id}` | Busca por ID |
+| PUT | `/api/estabelecimento/{id}` | Atualiza estabelecimento |
+| DELETE | `/api/estabelecimento/{id}` | Remove estabelecimento |
+
+#### Veículos  
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/veiculos` | Lista todos veículos |
+| POST | `/api/veiculo` | Cadastra novo veículo |
+| GET | `/api/veiculo/{id}` | Busca por ID |
+| PUT | `/api/veiculo/{id}` | Atualiza veículo |
+| DELETE | `/api/veiculo/{id}` | Remove veículo |
+
+#### Controle Entrada/Saída
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| POST | `/api/entrada?veiculoId={id}&estabelecimentoId={id}` | Registra entrada |
+| POST | `/api/saida?veiculoId={id}` | Registra saída |
+| GET | `/api/presentes` | Lista veículos no estacionamento |
+
+### 📝 Exemplos de JSON:
+
+#### Criar Estabelecimento:
+```json
+{
+  "nome": "Estacionamento FCamara",
+  "cnpj": "12.345.678/0001-90",
+  "endereco": "Rua das Flores, 123 - São Paulo/SP",
+  "telefone": "(11) 99999-9999",
+  "vagasMotos": 50,
+  "vagasCarros": 100
+}
+```
+
+#### Criar Veículo:
+```json
+{
+  "marca": "Toyota",
+  "modelo": "Corolla",
+  "cor": "Prata",
+  "placa": "ABC-1234",
+  "tipo": "CARRO"
+}
+```
+
+### 💡 Tipos de Veículo Aceitos:
+- `CARRO`
+- `MOTO`
+
 ## 🚀 Tecnologias Utilizadas
 
 - **Java 21** - Linguagem de programação
 - **Spring Boot 3.5.5** - Framework principal
 - **Spring Data JPA** - Persistência de dados
 - **Spring Web** - API REST
-- **Spring Validation** - Validação de dados
-- **H2 Database** - Banco de dados em memória/arquivo
-- **Lombok** - Redução de código boilerplate
-- **Maven** - Gerenciamento de dependências
+- **H2 Database** - Banco de dados
 - **Swagger/OpenAPI 3** - Documentação da API
+- **Maven** - Gerenciamento de dependências
 
 ## 📋 Funcionalidades
 
@@ -41,7 +146,7 @@ Sistema de gerenciamento de estacionamento para carros e motos desenvolvido para
 - **Maven 3.6+** (ou usar o Maven Wrapper incluído)
 - **Git** (opcional, para clonar o repositório)
 
-## ⚙️ Configuração e Execução
+## ⚙��� Configuração e Execução
 
 ### 1. Clonar o Repositório
 ```bash
@@ -223,7 +328,7 @@ src/main/java/Fcamara/sistem_estacionamento/
 ├── controller/
 │   └── EstabelecimentoController.java    # Endpoints da API
 ├── model/
-│   ├── Estabelecimento.java              # Entidade Estabelecimento
+��� ├── Estabelecimento.java              # Entidade Estabelecimento
 │   ├── Veiculos.java                     # Entidade Veículos
 │   ├── Movimentacao.java                 # Entidade Movimentação
 │   └── TipoVeiculo.java                  # Enum tipos de veículo
